@@ -1,8 +1,7 @@
-/* jshint node: true */
 'use strict';
 
-var autoprefixer = require('broccoli-autoprefixer');
-var defaults     = require('lodash/defaults');
+const autoprefixer = require('broccoli-autoprefixer');
+const defaults     = require('lodash/defaults');
 
 module.exports = {
   name: 'ember-cli-autoprefixer',
@@ -26,8 +25,8 @@ module.exports = {
   },
 
   postprocessTree: function(type, tree) {
-    if ((type === 'all' || type === 'styles') && this.enabled) {
-      tree = autoprefixer(tree, this.options);
+    if (type === 'css' && this.enabled) {
+      tree = new autoprefixer(tree, this.options);
     }
 
     return tree;
